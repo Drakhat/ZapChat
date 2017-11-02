@@ -1,6 +1,7 @@
 package in.blogspot.techdroidsz.zapchat;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
     private ViewPager mViewPager;
-    private SectionPagerAdapter mSectionPagerAdapter;
+    private SectionsPagerAdapter mSectionPagerAdapter;
+
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Tabs
         mViewPager=(ViewPager) findViewById(R.id.tabPager);
+        mSectionPagerAdapter=new SectionsPagerAdapter(getSupportFragmentManager());
+
+        mViewPager.setAdapter(mSectionPagerAdapter);
+
+        mTabLayout=(TabLayout) findViewById(R.id.main_tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
