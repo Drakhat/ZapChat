@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "143450834954",
+    "firebase_url": "https://zapchat-ba1d3.firebaseio.com",
+    "project_id": "zapchat-ba1d3",
+    "storage_bucket": "zapchat-ba1d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143450834954:android:a193b24de6bcbb35",
+        "android_client_info": {
+          "package_name": "in.blogspot.techdroidsz.zapchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143450834954-09f0mthdc5hg7c0796q7hsdel311ur2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.blogspot.techdroidsz.zapchat",
+            "certificate_hash": "32723ce12ca25b2cf3aebc5e2b62a6379a122086"
+          }
+        },
+        {
+          "client_id": "143450834954-3bahafv8g06hm46u5g5lma5ncc7488lt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzUcZXT--idYLTSrSTAS_4KXQIwE8RGsM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143450834954-3bahafv8g06hm46u5g5lma5ncc7488lt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
