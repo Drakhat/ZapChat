@@ -33,10 +33,10 @@
         android:text="SAVE CHANGES"
         android:id="@+id/status_save_btn"
         android:layout_below="@+id/changed_status"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@color/colorAccent"
         android:padding="10dp"
+        android:layout_alignEnd="@+id/changed_status"
         android:textColor="@android:color/white"/>
 
 
