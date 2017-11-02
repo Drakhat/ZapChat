@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.blogspot.techdroidsz.zapchat.StatusActivity">
+
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/status_app_bar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Status :"
+        android:layout_marginTop="24dp"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/status_app_bar"
+        android:layout_alignStart="@+id/changed_status" />
+    <EditText
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:hint="Status here.."
+        android:layout_marginTop="100dp"
+        android:id="@+id/changed_status"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAVE CHANGES"
+        android:id="@+id/status_save_btn"
+        android:layout_below="@+id/changed_status"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:textColor="@android:color/white"/>
+
+
+
+</RelativeLayout>
