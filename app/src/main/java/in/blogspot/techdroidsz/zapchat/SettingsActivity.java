@@ -3,10 +3,12 @@ package in.blogspot.techdroidsz.zapchat;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,6 +46,8 @@ public class SettingsActivity extends AppCompatActivity {
     private Button mStatusBtn;
     private Button mImageBtn;
 
+    private Toolbar mToolbar;
+
     private static final int GALLERY_PICK = 1;
 
     //Storage Firebase
@@ -56,6 +60,14 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+
+        mToolbar=(Toolbar) findViewById(R.id.settings_app_bar);
+
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setTitle("Settings");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDisplayImage = (CircleImageView) findViewById(R.id.settings_dp);
         mName = (TextView) findViewById(R.id.settings_display_name);
@@ -83,6 +95,8 @@ public class SettingsActivity extends AppCompatActivity {
 
                 mName.setText(name);
                 mStatus.setText(status);
+
+                if(!image.equals("default"))
 
                 Picasso.with(SettingsActivity.this).load(image).into(mDisplayImage);
             }

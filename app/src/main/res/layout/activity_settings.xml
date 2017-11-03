@@ -7,10 +7,13 @@
     tools:context="in.blogspot.techdroidsz.zapchat.SettingsActivity"
     android:background="@color/colorPrimaryDark">
 
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/settings_app_bar" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:src="@drawable/male"
+        android:src="@drawable/default_dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
