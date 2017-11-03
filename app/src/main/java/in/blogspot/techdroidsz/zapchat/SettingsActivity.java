@@ -3,6 +3,7 @@ package in.blogspot.techdroidsz.zapchat;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -30,10 +31,17 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.security.PrivateKey;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
+
+import static android.R.attr.bitmap;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -98,7 +106,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                 if(!image.equals("default"))
 
-                Picasso.with(SettingsActivity.this).load(image).into(mDisplayImage);
+                Picasso.with(SettingsActivity.this).load(image).placeholder(R.drawable.default_dp).into(mDisplayImage);
             }
 
             @Override
@@ -158,33 +166,66 @@ public class SettingsActivity extends AppCompatActivity {
                 mProgressDialog.show();
 
                 Uri resultUri = result.getUri();
+                File thumb_filePath=new File(resultUri.getPath());
 
                 String current_user_id=mCurrentUser.getUid();
 
-                StorageReference filepath = mImageStorage.child("Profile_Images").child(current_user_id+".jpg");
+                Bitmap thumb_bitmap=new Compressor(this)
+                        .setMaxHeight(200)
+                        .setMaxWidth(200)
+                        .setQuality(75)
+                        .compressToBitmap(thumb_filePath);
 
+                ByteArrayOutputStream baos=new ByteArrayOutputStream();
+                thumb_bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+                final byte[]thumb_byte=baos.toByteArray();
+
+                StorageReference filepath = mImageStorage.child("Profile_Images").child(current_user_id+".jpg");
+                final StorageReference thumb_filepath=mImageStorage.child("Profile_Images").child("thumb").child(current_user_id+".jpg");
                 filepath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @SuppressLint("ByteOrderMark")
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                         if(task.isSuccessful()){
-                            String download_url = task.getResult().getDownloadUrl().toString();
+                            final String download_url = task.getResult().getDownloadUrl().toString();
 
-                            mUserDatabase.child("image").setValue(download_url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            UploadTask uploadTask=thumb_filepath.putBytes(thumb_byte);
+                            uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task) {
+                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> thumb_task) {
 
-                                    if(task.isSuccessful()) {
+                                    String thumb_downloadUrl=thumb_task.getResult().getDownloadUrl().toString();
+                                    if(thumb_task.isSuccessful()){
+
+                                        Map update_hashMap=new HashMap();
+                                        update_hashMap.put("image",download_url);
+                                        update_hashMap.put("thumb_image",thumb_downloadUrl);
+
+                                        mUserDatabase.updateChildren(update_hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+
+                                                if(task.isSuccessful()) {
 
 
+                                                    mProgressDialog.dismiss();
+                                                    Toast.makeText(SettingsActivity.this, "Uploading Success.", Toast.LENGTH_LONG).show();
+                                                }
+
+
+
+                                            }
+                                        });
+
+                                    }else{
+                                        Toast.makeText(SettingsActivity.this,"Error in uploading thumbnail.",Toast.LENGTH_LONG).show();
                                         mProgressDialog.dismiss();
-                                        Toast.makeText(SettingsActivity.this, "Uploading Success.", Toast.LENGTH_LONG).show();
+
                                     }
-
-
-
                                 }
                             });
+
+
 
                         }else{
 
