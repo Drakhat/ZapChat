@@ -1,6 +1,7 @@
 package in.blogspot.techdroidsz.zapchat;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -72,6 +73,9 @@ public class StatusActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
+
+                            Intent setting_Intent=new Intent(StatusActivity.this,SettingsActivity.class);
+                            startActivity(setting_Intent);
                             mProgress.dismiss();
                         }else{
                             Toast.makeText(getApplicationContext(),"There was some error in saving changes.",Toast.LENGTH_LONG).show();
