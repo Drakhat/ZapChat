@@ -1,6 +1,7 @@
 package in.blogspot.techdroidsz.zapchat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -57,11 +58,26 @@ public class UsersActivity extends AppCompatActivity {
                 (Users.class,R.layout.users_single_layout,UsersViewHolder.class,mUsersDatabase)
         {
             @Override
-            protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int i) {
+            protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int position) {
 
                 usersViewHolder.setDisplayName(users.getName());
                 usersViewHolder.setUserStatus(users.getStatus());
                 usersViewHolder.setUserImage(users.getThumb_image(),getApplicationContext());
+
+                final String user_id=getRef(position).getKey();
+
+                usersViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent profileIntent=new Intent(UsersActivity.this,ProfileActivity.class);
+                        profileIntent.putExtra("user_id",user_id);
+                        startActivity(profileIntent);
+
+
+
+                    }
+                });
 
             }
         };
