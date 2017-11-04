@@ -1,5 +1,6 @@
 package in.blogspot.techdroidsz.zapchat;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,8 +12,11 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UsersActivity extends AppCompatActivity {
 
@@ -57,6 +61,7 @@ public class UsersActivity extends AppCompatActivity {
 
                 usersViewHolder.setDisplayName(users.getName());
                 usersViewHolder.setUserStatus(users.getStatus());
+                usersViewHolder.setUserImage(users.getThumb_image(),getApplicationContext());
 
             }
         };
@@ -83,6 +88,12 @@ public class UsersActivity extends AppCompatActivity {
         public void setUserStatus(String status){
             TextView usersStatusView=(TextView) mView.findViewById(R.id.users_single_status);
             usersStatusView.setText(status);
+        }
+
+        public void setUserImage(String thumb_image, Context ctx){
+            CircleImageView userImageView=(CircleImageView) mView.findViewById(R.id.users_single_img);
+
+            Picasso.with(ctx).load(thumb_image).placeholder(R.drawable.default_dp).into(userImageView);
         }
 
     }
