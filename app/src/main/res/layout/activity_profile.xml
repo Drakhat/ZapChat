@@ -39,12 +39,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Totoal Friends"
+        android:text="Total Friends"
         android:id="@+id/profile_totalFriends"
         android:textSize="20sp"
         android:layout_below="@+id/profile_status"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:textColor="@android:color/white"/>
 
     <Button
@@ -59,5 +59,17 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:textColor="@android:color/white"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_decline_req_btn"
+        android:layout_below="@+id/profile_send_req_btn"
+        android:padding="10dp"
+        android:text="DECLINE FRIEND REQUEST"
+        android:textSize="20sp"
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
