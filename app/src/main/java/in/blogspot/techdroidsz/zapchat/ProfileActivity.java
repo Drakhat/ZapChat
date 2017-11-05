@@ -60,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         mFriendReqDatabase=FirebaseDatabase.getInstance().getReference().child("Friend_req");
         mFriendDatabase=FirebaseDatabase.getInstance().getReference().child("Friends");
-        mNotificationDatabase=FirebaseDatabase.getInstance().getReference().child("notification");
+        mNotificationDatabase=FirebaseDatabase.getInstance().getReference().child("notifications");
 
         mCurrent_user= FirebaseAuth.getInstance().getCurrentUser();
 
