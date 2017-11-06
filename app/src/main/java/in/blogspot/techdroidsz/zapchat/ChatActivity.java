@@ -62,6 +62,8 @@ public class ChatActivity extends AppCompatActivity {
 
     private static final int TOTAL_ITEMS_TO_LOAD=10;
     private int mCurrentPage=1;
+    private int itemPos=0;
+    private String mLastKey="";
 
 
     @Override
@@ -211,6 +213,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onRefresh(){
                 mCurrentPage++;
+                itemPos=0;
 
                 loadMoreMessages();
 
@@ -222,19 +225,29 @@ public class ChatActivity extends AppCompatActivity {
     }
     private void loadMoreMessages(){
         DatabaseReference messageRef=mRootRef.child("messages").child(mCurrentUserId).child(mChatUser);
-        Query messageQuery=messageRef.orderByKey().endAt("").limitToLast(10);
+        Query messageQuery=messageRef.orderByKey().endAt(mLastKey).limitToLast(10);
         messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 Messages message=dataSnapshot.getValue(Messages.class);
 
-                messagesList.add(message);
+                messagesList.add(itemPos++,message);
+
+                if(itemPos==1){
+
+                    String messageKey=dataSnapshot.getKey();
+
+                    mLastKey=messageKey;
+
+                }
+
+
                 mAdapter.notifyDataSetChanged();
 
-                mMessagesList.scrollToPosition(messagesList.size()-1);
-
                 mRefreshLayout.setRefreshing(false);
+
+                mLinearLayout.scrollToPositionWithOffset(10,0);
 
             }
 
@@ -262,15 +275,26 @@ public class ChatActivity extends AppCompatActivity {
 
     private void loadMessages(){
 
-        DatabaseReference meesageRef=mRootRef.child("messages").child(mCurrentUserId).child(mChatUser);
+        DatabaseReference messageRef=mRootRef.child("messages").child(mCurrentUserId).child(mChatUser);
 
 
-        Query messageQuery=meesageRef.limitToLast(mCurrentPage*TOTAL_ITEMS_TO_LOAD);
+        Query messageQuery=messageRef.limitToLast(mCurrentPage*TOTAL_ITEMS_TO_LOAD);
 
         messageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
                 Messages message=dataSnapshot.getValue(Messages.class);
+
+                itemPos++;
+
+                if(itemPos==1){
+
+                    String messageKey=dataSnapshot.getKey();
+
+                    mLastKey=messageKey;
+
+                }
 
                 messagesList.add(message);
                 mAdapter.notifyDataSetChanged();
