@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:orientation="vertical"
-    tools:context="in.blogspot.techdroidsz.zapchat.RegisterActivity">
+    tools:context="in.blogspot.techdroidsz.zapchat.RegisterActivity"
+    android:background="#68ffa7">
+
+
     <include
         layout="@layout/app_bar_layout"
         android:id="@+id/log_toolbar" />
@@ -17,24 +19,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:text="Login To Your Account"
         android:textSize="30sp"
         android:textStyle="bold" />
     <EditText
         android:id="@+id/log_email"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
+        android:layout_marginTop="50dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:hint="Email"
+        android:layout_centerHorizontal="true"
         android:inputType="textEmailAddress"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Password"
+        android:layout_below="@+id/log_email"
+        android:layout_centerHorizontal="true"
         android:inputType="textPassword"
         android:id="@+id/log_pass"/>
     <Button
@@ -42,8 +48,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_below="@+id/log_pass"
+        android:layout_centerHorizontal="true"
+        android:textColor="#f44336"
         android:layout_marginTop="54dp"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
         android:text="Login"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@android:color/white"/>
-</LinearLayout>
+        android:background="@drawable/round_button_red"/>
+</RelativeLayout>

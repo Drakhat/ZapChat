@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="in.blogspot.techdroidsz.zapchat.StatusActivity">
+    tools:context="in.blogspot.techdroidsz.zapchat.StatusActivity"
+    android:background="#e9d0e1">
 
     <include layout="@layout/app_bar_layout"
         android:id="@+id/status_app_bar"
@@ -14,18 +15,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Status :"
+        android:text="Enter Your Status "
+        android:textStyle="bold"
         android:layout_marginTop="24dp"
-        android:textSize="15sp"
-        android:textColor="@color/colorPrimary"
+        android:textSize="25sp"
+        android:textColor="#55505a"
         android:layout_below="@+id/status_app_bar"
-        android:layout_alignStart="@+id/changed_status" />
+        android:layout_alignStart="@+id/changed_status"
+        android:id="@+id/status_textView"/>
     <EditText
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:hint="Status here.."
-        android:layout_marginTop="100dp"
+        android:hint="What's going on..."
+        android:textColor="#929292"
+        android:layout_below="@+id/status_textView"
+        android:layout_marginTop="20dp"
         android:id="@+id/changed_status"/>
     <Button
         android:layout_width="wrap_content"
@@ -34,10 +39,11 @@
         android:id="@+id/status_save_btn"
         android:layout_below="@+id/changed_status"
         android:layout_marginTop="20dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/round_button_red"
+        android:textStyle="bold"
         android:padding="10dp"
         android:layout_alignEnd="@+id/changed_status"
-        android:textColor="@android:color/white"/>
+        android:textColor="#357fff"/>
 
 
 

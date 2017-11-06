@@ -7,8 +7,20 @@
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Chat Fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chat Fragment"
+        android:textSize="36sp"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="80dp"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="300dp"
+        android:text="(Still Under Work!)"
+        android:textSize="25sp" />
 
 </FrameLayout>

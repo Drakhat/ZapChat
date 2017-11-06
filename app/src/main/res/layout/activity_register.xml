@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:orientation="vertical"
-    tools:context="in.blogspot.techdroidsz.zapchat.RegisterActivity">
+    tools:context="in.blogspot.techdroidsz.zapchat.RegisterActivity"
+    android:background="#68ffa7">
+
+
     <include
         layout="@layout/app_bar_layout"
         android:id="@+id/reg_toolbar" />
@@ -18,32 +20,39 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:layout_marginTop="20dp"
-        android:text="Create a New Account"
+        android:layout_marginTop="100dp"
+        android:text="Create New Account"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/reg_name"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:hint="Display Name" />
+        android:layout_below="@+id/textView2"
+        android:hint="Display Name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/reg_email"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/reg_name"
         android:hint="Email"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
         android:inputType="textEmailAddress"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:hint="Password"
+        android:layout_centerHorizontal="true"
         android:id="@+id/reg_pass"
+        android:layout_below="@+id/reg_email"
         android:inputType="textPassword"/>
     <Button
         android:id="@+id/reg_create_btn"
@@ -51,7 +60,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="54dp"
+        android:layout_below="@+id/reg_pass"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button_red"
         android:text="Create Account"
-        android:backgroundTint="@color/colorAccent"
-        android:textColor="@android:color/white"/>
-</LinearLayout>
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:textColor="#f44336" />
+</RelativeLayout>

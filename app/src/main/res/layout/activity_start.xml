@@ -12,29 +12,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Welcome To ZapChat!"
-        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:text="Welcome\nTo\nZapChat!"
+        android:textSize="36sp"
+        android:gravity="center"
         android:textColor="@android:color/white"
         android:textStyle="bold"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/front_img"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
     <Button
         android:id="@+id/start_log_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
         android:text="Already Have Account?"
-        android:background="@color/colorAccent"
-        android:padding="20dp"/>
+        android:textColor="#f44336"
+        android:textStyle="bold"
+        android:background="@drawable/round_button_red"
+        android:padding="20dp"
+        android:layout_above="@+id/start_reg_btn"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/start_reg_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/start_log_btn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:background="@drawable/round_button"
+        android:layout_marginBottom="70dp"
+        android:textColor="#fff"
         android:text="Need A New Account?"
-        android:padding="20dp"/>
+        android:paddingStart="20dp"
+        android:textStyle="bold"
+        android:paddingEnd="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

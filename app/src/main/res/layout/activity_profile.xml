@@ -57,7 +57,7 @@
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/round_button_red"
         android:textColor="@android:color/white"/>
     <Button
         android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
         android:padding="10dp"
         android:text="DECLINE FRIEND REQUEST"
         android:textSize="20sp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/round_button"
         android:textColor="@android:color/white"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"/>
