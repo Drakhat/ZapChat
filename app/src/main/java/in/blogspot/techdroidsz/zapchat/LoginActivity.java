@@ -46,8 +46,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mToolbar=(Toolbar) findViewById(R.id.log_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Login");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Login");
 
 
         mLogProgress=new ProgressDialog(this);

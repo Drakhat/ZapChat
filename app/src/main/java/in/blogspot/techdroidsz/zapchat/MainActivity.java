@@ -11,13 +11,18 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Toolbar mToolbar;
 
     private ViewPager mViewPager;
-    private SectionsPagerAdapter mSectionPagerAdapter;
+    private SectionPagerAdapter mSectionPagerAdapter;
+
+    private DatabaseReference mUserRef;
 
     private TabLayout mTabLayout;
 
@@ -32,9 +37,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("ZapChat");
 
+        if(mAuth.getCurrentUser()!=null) {
+
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
+        }
+
         //Tabs
         mViewPager=(ViewPager) findViewById(R.id.tabPager);
-        mSectionPagerAdapter=new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionPagerAdapter=new SectionPagerAdapter(getSupportFragmentManager());
 
         mViewPager.setAdapter(mSectionPagerAdapter);
 
@@ -49,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
 
         if(currentUser==null){
             sentToStart();
+        }else{
+            mUserRef.child("online").setValue("true");
+        }
+    }
+    @Override
+    protected void onStop(){
+        super.onStop();
+        FirebaseUser currentUser= mAuth.getCurrentUser();
+
+        if(currentUser!=null) {
+
+            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
+
         }
     }
 

@@ -39,7 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     private ProgressDialog mRegProgress;
-    private DatabaseReference mUserDatabase;
 
 
     @Override
@@ -54,7 +53,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         mRegProgress=new ProgressDialog(this);
 
-        mUserDatabase= FirebaseDatabase.getInstance().getReference().child("Users");
 
         mAuth=FirebaseAuth.getInstance();
 
@@ -96,11 +94,14 @@ public class RegisterActivity extends AppCompatActivity {
 
                     mDatabase=FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
+                    String device_token= FirebaseInstanceId.getInstance().getToken();
+
                     HashMap<String, String> userMap=new HashMap<>();
                     userMap.put("name",display_name);
                     userMap.put("status","Hi there! I'm using ZapChat");
                     userMap.put("image","default");
                     userMap.put("thumb_image","default");
+                    userMap.put("device_token",device_token);
 
                     mDatabase.setValue(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -109,23 +110,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 mRegProgress.dismiss();
 
-
-                                String current_user_id=mAuth.getCurrentUser().getUid();
-
-                                String deviceToken= FirebaseInstanceId.getInstance().getToken();
-
-                                mUserDatabase.child(current_user_id).child("device_token").setValue(deviceToken).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-
-                                        Intent mainIntent=new Intent(RegisterActivity.this,MainActivity.class);
-                                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(mainIntent);
-                                        finish();
-
-
-                                    }
-                                });
+                                Intent mainIntent=new Intent(RegisterActivity.this,MainActivity.class);
+                                mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(mainIntent);
+                                finish();
 
                             }
                         }

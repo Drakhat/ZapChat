@@ -28,5 +28,14 @@
         android:id="@+id/users_single_status"
         android:textSize="20sp"
         android:layout_toRightOf="@+id/users_single_img"/>
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:id="@+id/users_single_online_status"
+        android:layout_toRightOf="@+id/users_single_name"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/online_icon"
+        android:layout_marginLeft="15dp"
+        android:visibility="invisible"/>
 
 </RelativeLayout>
